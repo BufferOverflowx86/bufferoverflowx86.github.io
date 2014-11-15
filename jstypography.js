@@ -3,7 +3,7 @@
  * The Javascript Typography Correcter
  * 
  * @version   2.2.6 (build 15.11.2014)
- * @author    Данил Ерошенко "-1.#IND0000" <buffer.overflow.x86@gmail.com> (based on JSTypograf by UnderShot <mail@undershot.ru>)
+ * @author    Данил Ерошенко «BufferOverflow» <buffer.overflow.x86 at gmail dot com> (based on JSTypograf by UnderShot <mail at undershot dot ru>)
  * @link      https://github.com/BufferOverflowx86/JSTypography
  * @license   http://www.freebsd.org/copyright/freebsd-license.html
  * @example   jstypograf({obj:["my_button","button2"],nbspobj:"sub_button",bind:"click",language:"rus",type:"norm",txts:["textarea1","bl17~textarea2","+abc"],off:["quotes"]})
