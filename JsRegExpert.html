@@ -1,0 +1,697 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<title>
+			JS RegExpert
+		</title>
+		<style type="text/css">
+		h1
+		{
+			margin-top:5px;				/* Отступ сверху */
+			margin-left:5px;			/* Отступ слева */
+			font-style:italic;			/* Стиль текста - наклонный */
+			font-size: 24pt;			/* Размер */
+			font-family:Book Antiqua, Palatino Linotype, Palatino;	/* Шрифт */
+			color:#000000;				/* Цвет */
+			text-align:center;			/* Выравнивание посередине */
+		}
+		.textinput
+		{
+			margin-left:5px;			/* Отступ слева */
+			width:100%;
+			font-family:Book Antiqua, Palatino Linotype, Palatino;	/* Шрифт */	
+			font-size: 18pt;			/* Размер */		
+		}
+		.reginput
+		{
+			margin-left:5px;			/* Отступ слева */
+			font-family:Consolas, Courier;	/* Шрифт */	
+			font-size: 18pt;			/* Размер */
+			width:100%;
+		}
+		label
+		{
+			font-weight: bold;
+		}
+		p
+		{
+			/*font-family:Book Antiqua, Palatino Linotype, Palatino;*/	/* Шрифт */
+			font-size: 18pt;			/* Размер */
+			text-align:left;
+		}
+		.match
+		{
+			background-color:lime;
+		}
+		.error
+		{
+			color:red;
+		}
+		</style>
+	</head>
+	<body>
+	
+		<!--<h1>
+			JS RegExpert
+		</h1>-->
+		<noscript><br>Внимание! RegExpert не работает без поддержки JavaScript. Включите JavaScript в вашем браузере.<br></noscript>
+		<!-- код для изменения настроек типографа -->
+		<SCRIPT LANGUAGE="JavaScript"><!--
+			function demoGetOpts(){
+				var opts="";
+				if(document.getElementById("global").checked){
+					opts+="g";
+				}
+				if(document.getElementById("ignorecase").checked){
+					opts+="i";
+				}
+				if(document.getElementById("multiline").checked){
+					opts+="m";
+				}
+				if(document.getElementById("unicode").checked){
+					opts+="u";
+				}
+				return opts;
+			}
+
+			function demoShowMatchClick() {
+				document.getElementById("ShowMatches").innerHTML = "";
+				try{
+					if(document.getElementById("RegexpType").innerHTML == "Regexp"){
+						var s = "";
+						var regexprstring = document.getElementById("regex").value;
+						if(regexprstring == ""){
+							document.getElementById("ShowMatches").innerHTML = document.getElementById("subject").value;
+							return;
+						}
+						var re = new RegExp(regexprstring,demoGetOpts());
+						while ((m = re.exec(document.getElementById("subject").value)) != null) {
+							s += m.index + ': "'+m[0].replace("<","&lt;").replace(">","&gt;")+'"<br>';
+						}
+						var text=document.getElementById("subject").value;
+						var z = 0;
+						var i=0;
+						var m=[];
+						var a=text.match(/SHIELD[0-9]+S/g);
+						if(a){
+							for(i=0;i<a.length;i++){
+								m.push(a[i]);
+								text=text.replace(a[i],"SHIELD"+(i+z)+"S")
+							}
+							z=z+i;
+						}
+						a=text.match(re);
+						if(a){
+							for(i=0;i<a.length;i++){
+								m.push(a[i]);
+								text=text.replace(a[i],"SHIELD"+(i+z)+"S")
+							}
+							z=z+i;
+						}
+						text = text.replace("<","&lt;").replace(">","&gt;");
+						for(var i=m.length-1;i>=0;--i){
+							m[i] = m[i].replace(re, function($0){return '<span class="match">'+$0.replace("<","&lt;").replace(">","&gt;")+'</span>'});
+							text=text.replace("SHIELD"+i+"S",m[i]);
+						};
+						s+=text.replace(/\n/g,"<BR>");
+						document.getElementById("ShowMatches").innerHTML = s;
+					}
+					else{
+						var regs = document.getElementById("regexs").value.replace(/[\s]+$/,"").split("\n");
+						var reps = document.getElementById("replacementf").value.split("\n");
+						while(regs.length>reps.length){
+							reps.push("");
+						}
+						var text=document.getElementById("subject").value;
+						for (var i=0;i<regs.length;++i){
+							if(regs[i] == ""){
+								continue;
+							}
+							var re = new RegExp(regs[i], demoGetOpts());
+							var match = showMatchForReg(re, text);
+							var replacewith;
+							eval('replacewith = "'+ reps[i].replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"').replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"') + '"');
+							text=text.replace(re, replacewith);
+							
+							document.getElementById("ShowMatches").innerHTML = "<b>"+(i+1)+"</b><br>"+ match + "<br><br>" +
+							document.getElementById("ShowMatches").innerHTML;
+						}
+					}
+					
+				}
+				catch(err){
+					document.getElementById("ShowMatches").innerHTML='<span class="error">An error has occurred:<br>'+err.message+'</span>';
+				}
+			}
+			
+			function showMatchForReg(re, text){
+				var s = "";
+				while ((m = re.exec(text)) != null) {
+					s += m.index + ': "'+m[0].replace("<","&lt;").replace(">","&gt;")+'"<br>';
+				}
+				var z = 0;
+				var i=0;
+				var m=[];
+				var a=text.match(/SHIELD[0-9]+S/g);
+				if(a){
+					for(i=0;i<a.length;i++){
+						m.push(a[i]);
+						text=text.replace(a[i],"SHIELD"+(i+z)+"S")
+					}
+					z=z+i;
+				}
+				a=text.match(re);
+				if(a){
+					for(i=0;i<a.length;i++){
+						m.push(a[i]);
+						text=text.replace(a[i],"SHIELD"+(i+z)+"S")
+					}
+					z=z+i;
+				}
+				text = text.replace(/&/g,"&#38;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+				for(var i=m.length-1;i>=0;--i){
+					m[i] = m[i].replace(re, function($0){return '<span class="match">'+$0.replace("<","&lt;").replace(">","&gt;")+'</span>'});
+					text=text.replace("SHIELD"+i+"S",m[i]);
+				};
+				s+=text.replace(/\n/g,"<BR>");
+				return s;
+			}
+
+			function demoReplaceClick() {
+				document.getElementById("ShowMatches").innerHTML = "";
+				try{
+					if(document.getElementById("RegexpType").innerHTML == "Regexp"){
+						var re = new RegExp(document.getElementById("regex").value, demoGetOpts());
+						var replacewith;
+						//if(document.getElementById("function").checked){
+						if(document.getElementById("Fieldtype").innerHTML == "string"){
+							eval('replacewith = "'+ document.getElementById("replacement").value.replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"').replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"') + '"');
+						}else if(document.getElementById("Fieldtype").innerHTML == "function"){
+							eval('replacewith = ' + document.getElementById("replacementf").value);
+						}else{
+							replacewith = document.getElementById("replacementf").value;
+						}
+						document.getElementById("result").value = 
+							document.getElementById("subject").value.replace(re, replacewith);
+					}
+					else{
+						var regs = document.getElementById("regexs").value.replace(/[\n]+$/,"").split("\n");
+						var reps = document.getElementById("replacementf").value/*.replace(/[\n]+$/,"")*/.split("\n");
+						while(regs.length>reps.length){
+							reps.push("");
+						}
+						var s = document.getElementById("subject").value;
+						for (var i=0;i<regs.length;++i){
+							if(regs[i] == ""){
+								continue;
+							}
+							var re = new RegExp(regs[i], demoGetOpts());
+							var replacewith;
+							eval('replacewith = "'+ reps[i].replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"').replace(/([^\\]|^)((?:\\\\)*)"/g,'$1$2\\"') + '"');
+							s=s.replace(re, replacewith);
+						}
+						document.getElementById("result").value = s;
+					}
+				}
+				catch(err){
+					document.getElementById("ShowMatches").innerHTML = '<span class="error">An error has occurred:<br>'+err.message+'</span>';
+				}
+			}
+			
+			function ChangeField(){
+				var RegStr = document.getElementById("RegStr");
+				var RegTex = document.getElementById("RegTex");
+				var RepStr = document.getElementById("RepStr");
+				var RepTex = document.getElementById("RepTex");
+				RegStr.style.display = '';
+				RegTex.style.display = 'none';
+				document.getElementById("RegexpType").innerHTML = "Regexp";
+				if(document.getElementById("Fieldtype").innerHTML == "string"){
+					RepStr.style.display = 'none';
+					RepTex.style.display = '';
+					document.getElementById("Fieldtype").innerHTML = "function";
+				}else if(document.getElementById("Fieldtype").innerHTML == "function"){
+					RepStr.style.display = 'none';
+					RepTex.style.display = '';			
+					document.getElementById("Fieldtype").innerHTML = "text";	
+				}else{
+					RepStr.style.display = '';
+					RepTex.style.display = 'none';			
+					document.getElementById("Fieldtype").innerHTML = "string";
+				}
+			}
+			function ChangeRegMass(){
+				var RegStr = document.getElementById("RegStr");
+				var RegTex = document.getElementById("RegTex");
+				var RepStr = document.getElementById("RepStr");
+				var RepTex = document.getElementById("RepTex");	
+				if(document.getElementById("RegexpType").innerHTML == "Regexp"){
+					RegStr.style.display = 'none';
+					RegTex.style.display = '';
+					RepStr.style.display = 'none';
+					RepTex.style.display = '';
+					document.getElementById("RegexpType").innerHTML = "RegList";
+					document.getElementById("Fieldtype").innerHTML = "strings";
+				}else{
+					RegStr.style.display = '';
+					RegTex.style.display = 'none';
+					RepStr.style.display = '';
+					RepTex.style.display = 'none';
+					document.getElementById("RegexpType").innerHTML = "Regexp";
+					document.getElementById("Fieldtype").innerHTML = "string";
+				}
+			}
+			
+			function ColorArray(){
+				return new Array(
+				"8B30B2",
+				"A02020",
+				"208420",
+				"5F9EB0",
+				"AB6533",
+				"20A0A0",
+				"758B4F",
+				"F08080",
+				"E735A5");
+			}
+			function HighlightRegs(){
+				if(document.getElementById("RegexpType").innerHTML == "Regexp"){
+					var s = document.getElementById("regex").value;
+					document.getElementById("ShowHighlighReg").innerHTML = HighlightReg(s);
+				}else{
+					var regs = document.getElementById("regexs").value.replace(/[\s]+$/,"").split("\n");
+					for (var i=0;i<regs.length;++i){
+						regs[i]=HighlightReg(regs[i]);
+					}
+					document.getElementById("ShowHighlighReg").innerHTML = regs.join("<br/>");
+				}
+			}
+			
+			function HighlightReps(){
+				if(document.getElementById("RegexpType").innerHTML == "Regexp"){
+					var s = document.getElementById("replacement").value;
+					document.getElementById("ShowHighlighRep").innerHTML = HighlightRep(s);
+				}else{
+					var reps = document.getElementById("replacementf").value.split("\n");
+					for (var i=0;i<reps.length;++i){
+						reps[i]=HighlightRep(reps[i]);
+					}
+					document.getElementById("ShowHighlighRep").innerHTML = reps.join("<br/>");
+				}
+			}
+			
+			function HighlightReg(s) {
+				function IsSlashed(s, i) {
+					var slashCount = 0;
+					for (var j = i - 1; j >= 0; --j) {
+						if (s.charAt(j) == '\\') {
+							++slashCount;
+						} else {
+							break;
+						}
+					}
+					return (slashCount & 1);
+				}
+
+				s = s.replace(/&/g, "&#38;");
+				s = s.replace(/</g, "&lt;");
+				s = s.replace(/>/g, "&gt;");
+				var removeAt = function (arr, num) {
+				};
+				var level = 0, insideQ = false, insideF = false, antiQ = false;
+				var colors = ColorArray();
+				var shadowColors = ColorArray(), shadowLevel = 0;
+				var symbolBefore = '.';
+				for (var i = 0; i < s.length; ++i) {
+					var symbol = s.charAt(i);
+					if (symbol == '(' && !IsSlashed(s, i) && !insideQ) {
+						var a = "", c = "";
+						if (s.charAt(i + 1) == '?' && ":=!".indexOf(s.charAt(i + 2)) != -1) {
+							if (i != 0) {
+								a = s.substring(0, i);
+							}
+							if (i + 2 != s.length - 1) {
+								c = s.substring(i + 3, s.length);
+							}
+							var b = s.substring(i, i + 3);
+							colors.splice(level, 0, shadowColors[shadowLevel++ % shadowColors.length] + ";text-decoration:line-through;");
+							a = a + '<span style="color:#' + colors[level] + ';">' + b + '</span>';
+						} else {
+							if (i != 0) {
+								a = s.substring(0, i);
+							}
+							if (i != s.length - 1) {
+								c = s.substring(i + 1, s.length);
+							}
+							a = a + '<span style="color:#' + colors[level] + ';font-weight: bolder;">(</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+						++level;
+					} else if (symbol == ')' && !IsSlashed(s, i) && !insideQ) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						--level;
+						if (level < 0) {
+							a = a + '<span style="color:red;text-decoration: underline;">)</span>';
+							++level
+						} else {
+							a = a + '<span style="color:#' + colors[level] + ';font-weight: bolder;">)</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+						colors = colors.filter(function (a) {
+							return a !== colors[level];
+						});
+						if (colors.length == 0) {
+							colors = ColorArray();
+						}
+					} else if (symbol == '|' && !IsSlashed(s, i) && !insideQ) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						if (level < 1) {
+							a = a + '<span style="color:#999999;">|</span>';
+						} else {
+							a = a + '<span style="color:#' + colors[level - 1] + ';">|</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+					} else if (symbol == '[' && !(IsSlashed(s, i) || insideQ)) {
+						insideQ = true;
+						if (s.charAt(i + 1) == '^') {
+							antiQ = true;
+							var a = "", c = "";
+							if (i != 0) {
+								a = s.substring(0, i);
+							}
+							if (i < s.length - 2) {
+								c = s.substring(i + 2, s.length);
+							}
+							a = a + '<span style="color:#FF4500;">[^</span>';
+							s = a + c;
+						} else {
+							var a = "", c = "";
+							if (i != 0) {
+								a = s.substring(0, i);
+							}
+							if (i != s.length - 1) {
+								c = s.substring(i + 1, s.length);
+							}
+							a = a + '<span style="color:orange;">[</span>';
+							s = a + c;
+						}
+						i = a.length - 1;
+					} else if (symbol == ']' && !IsSlashed(s, i)) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						if (!insideQ) {
+							a = a + '<span style="color:red;text-decoration: underline;">]</span>';
+						} else if (antiQ) {
+							a = a + '<span style="color:#FF4500;">]</span>';
+							antiQ = false;
+						} else {
+							a = a + '<span style="color:orange;">]</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+						insideQ = false;
+					} else if ("frn".indexOf(symbol) != -1 && IsSlashed(s, i)) {
+						var a = "", c = "";
+						if (i - 1 != 0) {
+							a = s.substring(0, i - 1);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						a = a + '<span style="color:#2F5F5F;">\\' + symbol + '</span>';
+						s = a + c;
+						i = a.length - 1;
+					} else if (!insideQ && (symbol == '+' || symbol == '*' || (symbol == '?')) && !IsSlashed(s, i)) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						if (i == 0 || ((symbol != '?' && symbol != '?') && "{}*+?|(".indexOf(symbolBefore) != -1 && !IsSlashed(s, i - 1))) {
+							a = a + '<span style="color:red;text-decoration: underline;">' + symbol + '</span>';
+						} else {
+							a = a + '<span style="color:#0000FF;">' + symbol + '</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+					} else if ((symbol == '.' || (symbol == '^' || symbol == '$' && !insideQ)) && !IsSlashed(s, i)) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						a = a + '<span style="color:#00EE00;">' + symbol + '</span>';
+						s = a + c;
+						i = a.length - 1;
+
+					} else if (IsSlashed(s, i) && "bBdDsSwWpP".indexOf(symbol) != -1) {
+						var a = "", c = "";
+						if (i - 1 != 0) {
+							a = s.substring(0, i - 1);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						a = a + '<span style="color:#00EE00;">\\' + symbol + '</span>';
+						s = a + c;
+						i = a.length - 1;
+					} else if (symbol == '{' && !IsSlashed(s, i)) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						if (insideF || i == 0 || ("{}*+?|(".indexOf(symbolBefore) != -1 && !IsSlashed(s, i - 1))) {
+							a = a + '<span style="color:red;text-decoration: underline;">' + symbol + '</span>';
+						} else {
+							a = a + '<span style="color:#0000FF;">' + symbol + '</span>';
+						}
+						s = a + c;
+						i = a.length - 1;
+						insideF = true;
+					} else if (symbol == '}' && !IsSlashed(s, i) && insideF) {
+						var a = "", c = "";
+						if (i != 0) {
+							a = s.substring(0, i);
+						}
+						if (i != s.length - 1) {
+							c = s.substring(i + 1, s.length);
+						}
+						a = a + '<span style="color:#0000FF;">' + symbol + '</span>';
+						s = a + c;
+						i = a.length - 1;
+						insideF = false;
+					}
+					symbolBefore = symbol;
+				}
+				if (insideQ) {
+					s = s.replace(/<span style="color:orange;">\[<\/span>(?!.*?<span style="color:orange;">\[<\/span>)/, '<span style="color:red;text-decoration: underline;">[</span>');
+				}
+				if (insideF) {
+					s = s.replace(/<span style="color:#0000FF;">\{<\/span>(?!.*?<span style="color:#0000FF;">\{<\/span>)/, '<span style="color:red;text-decoration: underline;">{</span>');
+				}
+				if (level != 0) {
+					var re = new RegExp('<span style="color:#' + colors[level - 1] + ';">\\(</span>(?!.*?<span style="color:#' + colors[level - 1] + ';">\\(</span>)');
+					s = s.replace(re, '<span style="color:red;text-decoration: underline;">(</span>');
+				}
+				return s;
+			}
+			
+			function HighlightRep(s) {
+				s = s.replace(/&/g, "&#38;");
+				s = s.replace(/</g, "&lt;");
+				s = s.replace(/>/g, "&gt;");
+				var colors = ColorArray();
+				for (var i = 32; i >= 1; --i) {
+					var re = new RegExp("((?:[^\\$]|^)(?:\\$\\$)*)\\$" + i, "g");//([^\\$](?:\\$\\$))*
+					s = s.replace(re, '$1<span style="color:#' + colors[(i - 1) % colors.length] + ';">$$' + i + '</span>');
+				}
+				return s;
+			}
+
+			function blinkColor(el) {
+				el.style.background = '#ff0000';
+				setTimeout(() => {el.style.background = '#ffffff'}, 1000);
+			}
+
+
+			function loadRed() {
+				const fileSelector = document.getElementById('file-selector');
+
+				fileSelector.click();
+			}
+			
+			function onLoadingRed() {
+				const fileSelector = document.getElementById('file-selector');
+				const file = fileSelector.files[0];
+	
+				const reader = new FileReader();
+				reader.addEventListener('load', (event) => {
+					importRed(event.target.result);
+				});
+				reader.readAsText(file);
+			}
+
+			function saveRed() {
+				const content = exportRed();
+				const blob = new Blob([content], {
+					type: "application/json",
+				});
+				const a = document.createElement('a');
+				a.style.display = 'none';
+				document.body.appendChild(a);
+	
+				const url = window.URL.createObjectURL(blob);
+	
+				a.href = url;
+				a.download = 'RegExpert.red';
+	
+				a.click();
+	
+				window.URL.revokeObjectURL(url);
+				a.parentElement?.removeChild(a);
+			}
+			
+			function importRed(content){
+				try {
+					let obj = JSON.parse(content);
+					document.getElementById("RegexpType").innerHTML = obj.regexpType;
+					document.getElementById("Fieldtype").innerHTML = obj.fieldType;
+					document.getElementById("regex").value = obj.regex;
+					document.getElementById("regexs").value = obj.regexs;
+					document.getElementById("replacement").value = obj.replacement;
+					document.getElementById("replacementf").value = obj.replacementF;
+					document.getElementById("global").checked = obj.global;
+					document.getElementById("ignorecase").checked = obj.ignoreCase;
+					document.getElementById("multiline").checked = obj.multiLine;
+					document.getElementById("unicode").checked = obj.unicode;
+				}
+				catch (e){
+					alert('Invalid .red file! ' + e);
+				}
+				
+			}
+			
+			function exportRed(){
+				let obj = {
+					regexpType: document.getElementById("RegexpType").innerHTML,
+					fieldType: document.getElementById("Fieldtype").innerHTML,
+					regex: document.getElementById("regex").value,
+					regexs: document.getElementById("regexs").value,
+					replacement: document.getElementById("replacement").value,
+					replacementF: document.getElementById("replacementf").value,
+					global: document.getElementById("global").checked,
+					ignoreCase: document.getElementById("ignorecase").checked,
+					multiLine: document.getElementById("multiline").checked,
+					unicode: document.getElementById("unicode").checked
+				};
+				return JSON.stringify(obj, null, 2);
+			}
+			// -->
+		</SCRIPT>
+		<form id="TextAreas">
+		<table>
+		<tr>
+		<td width=50% style="vertical-align:top;">
+		<p>Subject:</p>
+		<div align="center" style="margin-right:20px;">
+			<!-- Поле ввода -->
+			<textarea class="textinput" cols="100" rows="10" id="subject" name="subject"></textarea>
+			<table>
+				<tr>
+					<td width="13%">
+						<p align="right"><a href="javascript://" id="RegexpType" onclick="ChangeRegMass();return false;">Regexp</a></p>
+					</td>
+					<td width="37%" style="vertical-align:top;">
+						<div id="RegStr"><p><INPUT class="reginput" TYPE=TEXT NAME="regex" id="regex"  VALUE="" SIZE="60" oninput="HighlightRegs();"></p></div>
+					</td>
+				</tr>
+			</table>
+			<div id="RegTex" style="display:none;"><textarea class="reginput" cols="100" rows="6" id="regexs" name="regexs" oninput="HighlightRegs();"></textarea></div>
+		</div>
+		</td>
+		<td width=50% style="vertical-align:top;">
+		<p>Result:</p>
+		<div align="center" style="margin-right:20px;">
+			<!-- Поле вывода -->
+			<textarea class="textinput" cols="100" rows="10" id="result" name="result"></textarea>
+			<table>
+				<tr>
+					<td width="13%">
+						<p align="right">Replacement <a href="javascript://" id="Fieldtype" onclick="ChangeField();return false;">string</a>:</p>
+					</td>
+					<td width="37%" style="vertical-align:top;">
+						<div id="RepStr"><p><INPUT class="reginput" TYPE=TEXT NAME="replacement" id="replacement"  VALUE="" SIZE="60" oninput="HighlightReps();"></p></div>
+					</td>
+				</tr>
+			</table>
+			<div id="RepTex" style="display:none;"><textarea class="reginput" cols="100" rows="6" id="replacementf" name="replacementf" oninput="HighlightReps();"></textarea></div>
+		</div>
+		</td>
+		</tr>
+		</table>
+		</form>
+		<!-- Настройки -->
+		<form>
+		<br>
+		<input type="checkbox" value="on" name="global" id="global" checked><label for="global"> Global</label>
+		<input type="checkbox" value="on" name="ignorecase" id="ignorecase"><label for="ignorecase"> IgnoreCase</label>
+		<input type="checkbox" value="on" name="multiline" id="multiline" checked><label for="multiline"> Multiline</label>
+		<input type="checkbox" value="on" name="unicode" id="unicode"><label for="unicode"> Unicode aware</label>
+		<!--<input type="checkbox" value="on" onchange="demoFunc()" name="function" id="function"><label for="function"> Function</label>-->
+		</form>
+		<FORM ID="demoMatch" NAME="demoMatch" METHOD=POST ACTION="javascript:void(0)">
+		<P>
+			<INPUT TYPE=SUBMIT VALUE="Show Match" ONCLICK="demoShowMatchClick()">
+			<INPUT TYPE=SUBMIT VALUE="Replace" ONCLICK="demoReplaceClick()">
+			&nbsp;
+			<INPUT TYPE=SUBMIT VALUE="Export" ONCLICK="saveRed();">
+			<INPUT TYPE=SUBMIT VALUE="Import" ONCLICK="loadRed();">
+			<input type="file" id="file-selector" accept=".red" onchange="onLoadingRed();" hidden="true">
+		</P>
+			
+		</FORM>
+		<table width="100%">
+		<tr>
+		<td width="50%" style="vertical-align:top;">
+		<P><span id="ShowHighlighReg" class="reginput"></span></P>
+		</td>
+		<td width="50%" style="vertical-align:top;">
+		<P><span id="ShowHighlighRep" class="reginput"></span></P>
+		</td>
+		</tr>
+		</table>
+		<script type="text/javascript">
+			ChangeRegMass();
+			HighlightRegs();
+			HighlightReps();
+		</script>
+		<P><div id="ShowMatches" style="font-family:Courier;"></div></P>
+	</body>
+</html>
