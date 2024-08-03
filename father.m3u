@@ -40,7 +40,7 @@ http://stream01.vnet.am/Evrika/mono.m3u8
 #EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Неизвестная Россия
 https://cdn.ntv.ru/unknown_russia/tracks-v1a1/playlist.m3u8
 #EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Наука 2.0 HD
-https://stream2.cinerama.uz/1248/tracks-v1a1/mono.m3u8
+http://188.113.190.15/96/tracks-v1a1/index.m3u8
 #EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Нано
 http://s1.tv-nano.com/Nano_rec/video.m3u8
 #EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Моя планета HD
