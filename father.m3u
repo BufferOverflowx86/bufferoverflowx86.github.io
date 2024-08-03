@@ -1,0 +1,101 @@
+﻿#EXTM3U url-tvg="https://iptvx.one/EPG"
+#EXTINF:-1 tvg-id=""tvg-logo="https://loganet.ru/images/loganetmega.png"group-title=""catchup=""catchup-source=""catchup-days="":http-user-agent="",Последнее обновление 7:39:43 03.08.24 по МСК
+https://loganet.ru/
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/World.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",Мир HD
+http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/playlist.m3u8
+#EXTINF:-1 tvg-id="tvcentr"tvg-logo="http://loganet.ru/images/channels/TV-Centre.png"group-title="Общие"catchup="append"catchup-source="?offset=-${offset}&utcstart=${timestamp}"catchup-days="7":http-user-agent="WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer",ТВ Центр (Архив)
+#EXTVLCOPT:http-user-agent=WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer
+https://zabava-htlive.cdn.ngenix.net/hls/CH_TVC/variant.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/Star.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",Звезда HD
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist_hdhigh.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/Russia-K-HD.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",Россия К HD
+https://player.smotrim.ru/iframe/stream/live_id/19201
+#EXTINF:-1 tvg-id="rossia1-pl3"tvg-logo="http://loganet.ru/images/channels/Russia-1-HD.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",Россия 1 HD +3
+https://player.smotrim.ru/iframe/stream/live_id/60263
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/Ren-TV-HD.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",РенТВ HD
+https://livetv.mylifeisgood.net.ru/channels/rentv.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/OTR.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",ОТР +2
+http://94.230.240.17:8080/otp/index.m3u8
+#EXTINF:-1 tvg-id="ntv-mir"tvg-logo="http://loganet.ru/images/channels/NTV-World.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",НТВ-Мир
+https://streaming.thestream.cyou/live/213-req_offset_28000000-req_window_0-1k_v5.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/NTV-HD.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",НТВ HD
+http://cdn.ntv.ru/ntv0_hd/tracks-v1a1/rewind-7150.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/NTV-Belarus.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",НТВ-Беларусь
+http://194.158.222.36:6106/
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/NTV-America.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",НТВ-Америка
+http://4.59.210.197:8815/udp/127.0.0.1:6003
+#EXTINF:-1 tvg-id=""tvg-logo="http://loganet.ru/images/channels/First-HD.png"group-title="Общие"catchup=""catchup-source=""catchup-days="":http-user-agent="",Первый канал HD
+https://edge3.1internet.tv/dash-live2/streams/1tv/1tvdash.mpd
+#EXTINF:-1 tvg-id="5kanal-ru"tvg-logo="http://loganet.ru/images/channels/Fifth.png"group-title="Общие"catchup="append"catchup-source="?offset=-${offset}&utcstart=${timestamp}"catchup-days="7":http-user-agent="WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer",Пятый канал (Архив)
+#EXTVLCOPT:http-user-agent=WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer
+https://zabava-htlive.cdn.ngenix.net/hls/CH_5TV/variant.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Точка Отрыва
+http://188.113.190.15/183/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Телепутешествия
+http://94.232.104.237:8011/teleputeshestviya/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Приключения HD
+http://135.181.115.81:8000/play/a00k/index.m3u8?token=livetv
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Победа
+http://188.113.190.15/85/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Первый космический HD
+http://stream01.vnet.am/Evrika/mono.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Неизвестная Россия
+https://cdn.ntv.ru/unknown_russia/tracks-v1a1/playlist.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Наука 2.0 HD
+https://stream2.cinerama.uz/1248/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Нано
+http://s1.tv-nano.com/Nano_rec/video.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Моя планета HD
+http://188.113.190.15/219/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Кто есть кто
+http://188.113.190.11/82/video.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Конгресс ТВ
+http://live-3.otcnet.ru/congresstv/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",История
+http://109.239.208.82:80/history/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Звезда Плюс
+http://tvzvezda.bonus-tv.ru/cdn/zvezdaplus/playlist_hdhigh.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Живая природа HD
+http://109.239.208.82:80/livenaturehd/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Живая планета
+http://109.239.208.82:80/liveplanet/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Время
+http://188.113.190.15/118/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",В мире животных HD
+http://195.211.27.149:8887/8456/index.m3u8?token=test
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Viju+ Planet HD
+http://91.218.160.212:8015/play/a04f/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Viju Nature HD
+http://188.134.76.176:81/udp/235.10.10.228:1234
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Viju History HD
+http://141.95.55.143/CH3871/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Viju Explore HD
+http://188.134.76.176:81/udp/235.10.10.227:1234
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Sunset Space
+https://stream.sunset-media.ru/Free/Free/3.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",RTG HD
+https://strm.yandex.ru/kal/rtg/rtg0.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Nat Geo Wild
+http://45.159.74.13:80/NatGeoWild/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Museum TV
+https://stream2.cinerama.uz/1451/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",History
+http://195.211.27.149:8887/8356/index.m3u8?token=test
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",HDL
+http://94.232.104.237:8011/hdlife/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Galaxy TV
+http://195.26.83.96:7007/play/a00j/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Da Vinci
+http://188.113.190.15/161/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Big Planet
+http://tv.light-net.ru:8005/play/a08g
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",365 дней ТВ
+http://185.112.140.28/365_dnej/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",360 HD
+https://strm.yandex.ru/kal/360tv/360tv0.m3u8
+#EXTINF:-1 tvg-id="terra-ru"tvg-logo=""group-title="Познавательные"catchup=""catchup-source=""catchup-days="":http-user-agent="",Terra
+http://188.113.190.15/78/tracks-v1a1/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Хобби"catchup=""catchup-source=""catchup-days="":http-user-agent="",Авто Плюс
+http://178.16.151.67/avto-plus/index.m3u8
+#EXTINF:-1 tvg-id=""tvg-logo=""group-title="Хобби"catchup=""catchup-source=""catchup-days="":http-user-agent="",Авто 24
+http://109.239.208.82:80/auto24/index.m3u8
